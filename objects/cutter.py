@@ -1,7 +1,6 @@
 import pygame
 
 
-
 def cutter(filename, key):
     mega_image = filename
     list_of_sprites = list()

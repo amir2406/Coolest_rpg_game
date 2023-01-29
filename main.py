@@ -31,8 +31,8 @@ def run():
     player = MainPlayer(screen, 'idle', board.out_pole())  # Главный герой
     all_sprites.add(player)
     while running:
-        control.controls(screen, player, board) # отслеживание событий
-        control.update(screen, bg_color, player, board, walls) # обновление всех кто на экране
+        control.controls(screen, all_sprites, player, board, bullets) # отслеживание событий
+        control.update(screen, bg_color, player, board, walls, bullets) # обновление всех кто на экране
         control.animated(screen, player, enemies)
         clock.tick(FPS) #
         camera.update(player)

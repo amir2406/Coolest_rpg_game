@@ -1,15 +1,20 @@
 import pygame, sys
+from .objects.bullet import Bullet
 
 pygame.init()
 
 
-def controls(screen, player, board):
+def controls(screen, all_sprites, player, board, bullets):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             save()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             board.get_click(event.pos)
+            bullet = Bullet(screen, player)
+            bullets.add(bullet)
+            print(0)
+            all_sprites.add(bullet)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 player.move_left = True
@@ -47,7 +52,7 @@ def controls(screen, player, board):
                 player.stay = True
 
 
-def update(screen, bg_color, player, board, walls):
+def update(screen, bg_color, player, board, walls, all_sprites):
     screen.fill(bg_color)
     board.output()
     # if spritecollideany(player, walls):
@@ -62,6 +67,9 @@ def update(screen, bg_color, player, board, walls):
     #     # player.speed = 0
     # else:
     #     player.speed = BASIC_SPEED
+    for object in all_sprites:
+        object.update()
+        object.output()
     player.update()
     player.output()
     pygame.display.flip()

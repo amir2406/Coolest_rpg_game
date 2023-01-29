@@ -165,6 +165,13 @@ class MainPlayer(Sprite):
             self.dt += 1
         self.i += 1
 
+    def attack(self):
+        if self.move_left:
+            y = self.rect.centery
+            x = self.rect.left
+        else:
+            pass
+
 d = {'stay': 0,
      'down': 0,
      'down-right': 1,
