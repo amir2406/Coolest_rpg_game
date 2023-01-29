@@ -11,16 +11,26 @@ class Bullet(pygame.sprite.Sprite):
         self.speed = 5
         self.screen_rect = screen.get_rect()
         self.screen = screen
-        self.speed_y = 0
         self.rect.centery = player.rect.centery
         if self.vector == 'left':
             self.rect.right = player.rect.left
             self.speed_x = -self.speed
-        else:
+            self.speed_y = 0
+        elif self.vector == 'right':
             self.rect.left = player.rect.right
             self.speed_x = self.speed
-
-    def output(self):
+            self.speed_y = 0
+        elif self.vector == 'up':
+            self.rect.centerx = player.rect.centerx
+            self.speed_x = 0
+            self.speed_y = -self.speed
+            self.rect.bottom = player.rect.top
+        else:
+            self.rect.top = player.rect.bottom
+            self.rect.centerx = player.rect.centerx
+            self.speed_x = 0
+            self.speed_y = self.speed
+    def draw(self):
         self.screen.blit(self.image, self.rect)
 
     def update(self):
