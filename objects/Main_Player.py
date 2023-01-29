@@ -1,8 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from .constants import *
-from .cutter import cutter
-from math import sqrt
+from game.objects.cutter import cutter
 
 
 class MainPlayer(Sprite):
