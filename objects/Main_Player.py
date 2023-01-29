@@ -32,6 +32,8 @@ class MainPlayer(Sprite):
             self.k = K_MAGIK
             self.k2 = K_MAGIK_2
         else:
+
+
             self.k = K_WARRIOR
             self.k2 = K_WARRIOR_2
         self.image = self.list_of_sprites['idle'][0]
@@ -43,10 +45,10 @@ class MainPlayer(Sprite):
         self.speed = BASIC_SPEED * self.k
         self.screen_rect = screen.get_rect()
         self.screen = screen
-        self.rect.centerx = 100
-        self.rect.centery = 0
-        self.absy = self.rect.bottom - 81
-        self.absx = self.rect.left + 51
+        self.rect.centerx = 300
+        self.rect.centery = 60
+        self.absy = self.rect.bottom - BLOCK_WIDTH
+        self.absx = self.rect.left - 51
         self.move_left = False
         self.move_right = False
         self.jump = False

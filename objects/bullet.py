@@ -2,7 +2,7 @@ import pygame
 
 
 class Bullet(pygame.sprite.Sprite):
-    image = pygame.image.load('images/bullet.png')
+    image = pygame.transform.scale(pygame.image.load('images/bullet.png'), (16, 16))
 
     def __init__(self, screen, player):
         super(Bullet, self).__init__()
@@ -13,7 +13,6 @@ class Bullet(pygame.sprite.Sprite):
         self.screen = screen
         self.speed_y = 0
         self.rect.centery = player.rect.centery
-        print(self.vector)
         if self.vector == 'left':
             self.rect.right = player.rect.left
             self.speed_x = -self.speed

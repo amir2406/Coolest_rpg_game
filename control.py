@@ -1,5 +1,6 @@
 import pygame, sys
 from .objects.bullet import Bullet
+from pygame.sprite import spritecollide, groupcollide
 
 pygame.init()
 
@@ -13,7 +14,6 @@ def controls(screen, all_sprites, player, board, bullets):
             board.get_click(event.pos)
             bullet = Bullet(screen, player)
             bullets.add(bullet)
-            print(0)
             all_sprites.add(bullet)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
@@ -52,7 +52,7 @@ def controls(screen, all_sprites, player, board, bullets):
                 player.stay = True
 
 
-def update(screen, bg_color, player, board, walls, all_sprites):
+def update(screen, bg_color, player, board, walls, bullets):
     screen.fill(bg_color)
     board.output()
     # if spritecollideany(player, walls):
@@ -67,7 +67,10 @@ def update(screen, bg_color, player, board, walls, all_sprites):
     #     # player.speed = 0
     # else:
     #     player.speed = BASIC_SPEED
-    for object in all_sprites:
+    for bullet in groupcollide(bullets, walls, True, False):
+        bullet.remove()
+        bullet.kill()
+    for object in bullets:
         object.update()
         object.output()
     player.update()

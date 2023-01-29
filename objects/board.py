@@ -16,10 +16,10 @@ class Board:
                 n, oz, _ = eval(x)
                 l.append(oz)
                 if oz == 1:
-                    object = Wall(screen, n, i, j)
+                    object = Wall(screen, i, j)
                     walls.add(object)
                 else:
-                    object = Floor(screen, n, i, j)
+                    object = Floor(screen, i, j)
                     floors.add(object)
                 all_spr.add(object)
                 p.append(object)
@@ -49,36 +49,32 @@ class Board:
 
 
 class Wall(Sprite):
-    images = {1: pygame.image.load('images/maybe/derevo.png')}
+    image = pygame.transform.scale(pygame.image.load('images/maybe/derevo.png'), (128, 128))
 
-    def __init__(self, screen, type, i, j):
+    def __init__(self, screen, i, j):
         super(Wall, self).__init__()
-        self.image = self.images[type]
         self.image.set_colorkey((255, 255, 255))
-        self.image = pygame.transform.scale(self.image, (BLOCK_WIDTH, BLOCK_HEIGHT))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.screen = screen
-        self.rect.x = j * BLOCK_HEIGHT
-        self.rect.y = i * BLOCK_WIDTH
+        self.rect.x = j * 128
+        self.rect.y = i * 128
 
     def output(self):
         self.screen.blit(self.image, self.rect)
 
 
 class Floor(Sprite):
-    images = {0: pygame.image.load('images/Environment/Grass1.png')}
+    image = pygame.transform.scale(pygame.image.load('images/Environment/Grass2.png'), (128, 128))
 
-    def __init__(self, screen, type, i, j):
+    def __init__(self, screen, i, j):
         super(Floor, self).__init__()
-        self.image = self.images[type]
         self.image.set_colorkey((255, 255, 255))
-        self.image = pygame.transform.scale(self.image, (BLOCK_WIDTH, BLOCK_HEIGHT))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.screen = screen
-        self.rect.x = j * BLOCK_HEIGHT
-        self.rect.y = i * BLOCK_WIDTH
+        self.rect.x = j * 128
+        self.rect.y = i * 128
 
     def output(self):
         self.screen.blit(self.image, self.rect)
